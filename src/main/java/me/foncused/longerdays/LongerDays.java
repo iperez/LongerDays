@@ -19,6 +19,7 @@ public class LongerDays extends JavaPlugin {
 	public void onEnable() {
 		this.registerConfig();
 		this.registerEvents();
+
 		new BukkitRunnable() {
 			@Override
 			public void run() {
@@ -42,6 +43,7 @@ public class LongerDays extends JavaPlugin {
 
 	private void registerEvents() {
 		this.getServer().getPluginManager().registerEvents(new PlayerBed(this), this);
+		this.getServer().getPluginManager().registerEvents(new PlayerSleepListener(), this);
 	}
 
 	private void registerRunnables() {
