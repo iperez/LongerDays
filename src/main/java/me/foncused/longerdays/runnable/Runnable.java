@@ -14,11 +14,13 @@ public class Runnable {
 	private final LongerDays plugin;
 	private final ConfigManager cm;
 	private final Map<String, Long> counts;
+	private Map<World, Boolean> isPlayerSleeping;
 
 	public Runnable(final LongerDays plugin) {
 		this.plugin = plugin;
 		this.cm = this.plugin.getConfigManager();
 		this.counts = new HashMap<>();
+		this.isPlayerSleeping = new HashMap<>()
 	}
 
 	public void runCycles(final World world) {
