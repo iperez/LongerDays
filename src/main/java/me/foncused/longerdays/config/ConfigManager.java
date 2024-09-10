@@ -13,9 +13,12 @@ public class ConfigManager {
 	private final FileConfiguration config;
 	private int day;
 	private int night;
-	private boolean nightSkipping;
-	private int playersSleepingPercentage;
 	private Set<String> worlds;
+
+	private boolean nightSkippingEnabled;
+	private boolean percentageEnabled;
+	private int percentage;
+
 
 	public ConfigManager(final FileConfiguration config) {
 		this.config = config;
@@ -43,26 +46,15 @@ public class ConfigManager {
 		}
 		LongerDaysUtil.console("Set night cycle to " + this.night + " minutes");
 
-		// night-skipping
-		this.nightSkipping = this.config.getBoolean("night-skipping", true);
-		LongerDaysUtil.console(this.nightSkipping ? "Night skipping is enabled" : "Night skipping is disabled");
-
-		// players-sleeping-percentage
-		final int playersSleepingPercentage = this.config.getInt("players-sleeping-percentage", 50);
-		if(playersSleepingPercentage < 0 || playersSleepingPercentage > 100) {
-			this.playersSleepingPercentage = 50;
-			LongerDaysUtil.consoleWarning("Set players sleeping percentage to " + playersSleepingPercentage + "% is not safe, reverting to default...");
-		} else {
-			this.playersSleepingPercentage = playersSleepingPercentage;
-		}
-		LongerDaysUtil.console("Set players sleeping percentage to " + playersSleepingPercentage + "%");
-
 		// worlds
 		final List<String> worlds = this.config.getStringList("worlds");
 		this.worlds = new HashSet<>();
 		this.worlds.addAll(worlds);
 		this.worlds = Collections.unmodifiableSet(this.worlds);
 
+		percentageEnabled =  this.config.getBoolean("players-sleeping-percentage.enabled");
+		percentage = this.config.getInt("players-sleeping-percentage.percentage");
+		nightSkippingEnabled = this.config.getBoolean("night-skipping.enabled");
 	}
 
 	public int getDay() {
@@ -77,12 +69,15 @@ public class ConfigManager {
 		return Collections.unmodifiableSet(this.worlds);
 	}
 
-	public boolean isNightSkipping() {
-		return this.nightSkipping;
+	public boolean isPercentageEnabled() {
+		return percentageEnabled;
 	}
 
-	public int getPlayersSleepingPercentage() {
-		return this.playersSleepingPercentage;
+	public int getPercentage() {
+		return percentage;
 	}
 
+	public boolean isNightSkippingEnabled() {
+		return nightSkippingEnabled;
+	}
 }
