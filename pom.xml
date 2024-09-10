@@ -76,11 +76,11 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-         <distributionManagement>
-           <repository>
-             <id>github</id>       
-             <name>Releases</name>           
-             <url>https://maven.pkg.github.com/iperez/LongerDays</url> 
-           </repository>
-         </distributionManagement>   
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/iperez/LongerDays</url>
+    </repository>
+  </distributionManagement>
 </project>
