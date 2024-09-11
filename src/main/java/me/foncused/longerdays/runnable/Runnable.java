@@ -20,7 +20,7 @@ public class Runnable {
 		this.plugin = plugin;
 		this.cm = this.plugin.getConfigManager();
 		this.counts = new HashMap<>();
-		this.isPlayerSleeping = new HashMap<>()
+		this.isPlayerSleeping = new HashMap<>();
 	}
 
 	public void runCycles(final World world) {
