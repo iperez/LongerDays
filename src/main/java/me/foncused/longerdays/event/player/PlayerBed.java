@@ -52,6 +52,7 @@ public class PlayerBed implements Listener {
 				this.sleeping--;
 			}
 		}
+		final World world = event.getPlayer().getWorld();
 		world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 	}
 
