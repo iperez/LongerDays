@@ -37,8 +37,9 @@ public class PlayerBed implements Listener {
 					&& event.getBedEnterResult() == PlayerBedEnterEvent.BedEnterResult.OK
 					&& (this.sleeping / world.getPlayers().size()) * 100 >= this.cm.getPlayersSleepingPercentage()) {
 				this.sleeping = 0;
-				world.setTime(0);
-				event.setCancelled(true);
+				world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
+				//world.setTime(0);
+				//event.setCancelled(true);
 				LongerDaysUtil.console("The night has been skipped by sleeping");
 			}
 		}
@@ -51,6 +52,7 @@ public class PlayerBed implements Listener {
 				this.sleeping--;
 			}
 		}
+		world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 	}
 
 }
